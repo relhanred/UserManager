@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center my-4">
+      <button class="btn btn-lg btn-outline-primary" style="vertical-align : middle;" (click)="open(content)">Ajouter un
+        utilisateur</button>
+    </div>
+  </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title">Ajout d'un utilisateur</h5>
+      <button type="button" class="close" data-dismiss="modal" (click)="modal.close('Save click')" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="userForm" (ngSubmit)="addUser()">
+        <div class="form-group">
+          <label for="name">Nom </label>
+          <input type="text" id="nom" class="form-control" placeholder="Nom" formControlName="nom" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Prenom </label>
+          <input type="email" id="Prenom" class="form-control" placeholder="Prenom" formControlName="prenom" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Adresse email </label>
+          <input type="text" id="email" class="form-control" placeholder="Adresse email" formControlName="email"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Téléphone </label>
+          <input type="text" id="phone" class="form-control" placeholder="Numéro de Téléphone" formControlName="phone"
+            required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')"
+            data-dismiss="modal">Fermer</button>
+          <button [disabled]="userForm.invalid" type="submit" class="btn btn-primary"
+            (click)="modal.close('Save click')" data-dismiss="modal">Ajouter</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <div class="row">
+    <app-user [user]="user" *ngFor="let user of usersList" class="col-4"></app-user>
+  </div>
+</div>
